@@ -1,3 +1,11 @@
+require 'faker'
+#ensures a total reset of data 
+#clearing all previous records before reseeding
+
+Company.destroy_all
+Dev.destroy_all
+Freebie.destroy_all
+
 puts "Creating companies..."
 Company.create(name: "Google", founding_year: 1998)
 Company.create(name: "Facebook", founding_year: 2004)
@@ -17,5 +25,13 @@ puts "Creating freebies..."
 # * and a freebie belongs to a company.                         *
 # ***************************************************************
 # Create freebies Here
+5.times do 
+    Freebie.create(
+        value: rand(0...50),
+        item_name: Faker::Game.title,
+        company_id: Company.all.sample.id, #Company.ids.sample
+        dev_id: Dev.all.sample.id #sample takes a random record from query
+    )
+end 
 
 puts "Seeding done!"

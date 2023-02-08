@@ -8,6 +8,11 @@ class Dev < ActiveRecord::Base
         end
     end
 
+    #save d1, d2
+    #running give away twice and showing d1, d2 
+    #may not reflect update
+    #however Dev.first or Dev.second will
+    #and it will show in the database
     def give_away(dev, freebie)
         #check if freebie belongs to current dev
         if(freebie.dev_id == self.id)
